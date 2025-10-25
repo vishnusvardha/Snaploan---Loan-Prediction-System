@@ -1,0 +1,321 @@
+:root {
+    --bg: #0a0e1a;
+    --card: #131824;
+    --card-border: #1e2538;
+    --text: #e4e7eb;
+    --text-muted: #8b92a8;
+    --accent1: #06b6d4;
+    --accent2: #0891b2;
+    --success: #10b981;
+    --success-bg: #064e3b;
+    --error: #ef4444;
+    --error-bg: #7f1d1d;
+    --rejected: #dc2626;
+    --input-bg: #0f1421;
+    --input-border: #1f2937;
+    --glass: rgba(6, 182, 212, 0.1);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    font-family: 'Inter', 'Segoe UI', Roboto, Arial, sans-serif;
+    background: linear-gradient(180deg, #060810, var(--bg) 60%);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.6;
+}
+
+.layout {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 24px;
+    max-width: 1100px;
+    margin: 36px auto;
+    padding: 20px;
+}
+
+.card {
+    background: var(--card);
+    border-radius: 16px;
+    border: 1px solid var(--card-border);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    padding: 28px;
+}
+
+.form-card h1 {
+    margin: 0 0 24px 0;
+    font-size: 1.75rem;
+    color: var(--text);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+form label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--text-muted);
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+form input,
+form select {
+    width: 100%;
+    padding: 12px 14px;
+    margin-bottom: 18px;
+    border-radius: 10px;
+    border: 1px solid var(--input-border);
+    background: var(--input-bg);
+    color: var(--text);
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+}
+
+form input:focus,
+form select:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px var(--glass);
+    border-color: var(--accent1);
+}
+
+/* Modern Submit Button - Teal/Cyan Gradient */
+.submit-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 14px 24px;
+    margin-top: 8px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #06b6d4, #0891b2);
+    color: white;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 14px rgba(6, 182, 212, 0.4);
+    position: relative;
+    overflow: hidden;
+}
+
+.submit-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(6, 182, 212, 0.5);
+}
+
+.submit-btn:hover::before {
+    left: 100%;
+}
+
+.submit-btn:active {
+    transform: translateY(0);
+}
+
+.btn-text {
+    font-size: 1rem;
+}
+
+.btn-arrow {
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+}
+
+.submit-btn:hover .btn-arrow {
+    transform: translateX(4px);
+}
+
+/* Clean Result Display */
+.result {
+    margin-top: 24px;
+    padding: 20px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--card-border);
+    backdrop-filter: blur(10px);
+}
+
+.result-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.result .name {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--text);
+}
+
+.result .badge {
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.result .message {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    padding-top: 8px;
+    border-top: 1px solid var(--card-border);
+}
+
+/* Success State (Approved) */
+.result.success {
+    border-color: rgba(16, 185, 129, 0.3);
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.08), rgba(16, 185, 129, 0.02));
+}
+
+.result.success .badge {
+    background: var(--success);
+    color: white;
+}
+
+/* Rejected State - Red */
+.result.rejected {
+    border-color: rgba(220, 38, 38, 0.3);
+    background: linear-gradient(135deg, rgba(220, 38, 38, 0.08), rgba(220, 38, 38, 0.02));
+}
+
+.result.rejected .badge {
+    background: var(--rejected);
+    color: white;
+}
+
+/* Error State */
+.result.error {
+    border-color: rgba(239, 68, 68, 0.3);
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.08), rgba(239, 68, 68, 0.02));
+}
+
+.result.error .badge {
+    background: var(--error);
+    color: white;
+}
+
+/* Muted State */
+.result.muted .badge {
+    background: var(--input-bg);
+    color: var(--text-muted);
+}
+
+/* Tips Card */
+.tips-card h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+    color: var(--text);
+    font-weight: 700;
+}
+
+.tips-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.tips-list li {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 16px 0;
+    border-top: 1px solid var(--card-border);
+}
+
+.tips-list li:first-child {
+    border-top: none;
+    padding-top: 0;
+}
+
+.tip-icon {
+    font-size: 1.5rem;
+    line-height: 1;
+}
+
+.tips-list strong {
+    display: block;
+    color: var(--text);
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.tips-list p {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 0.88rem;
+}
+
+.tips-footer {
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid var(--card-border);
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.tips-footer a {
+    color: var(--accent1);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+.tips-footer a:hover {
+    color: var(--accent2);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .layout {
+        grid-template-columns: 1fr;
+        padding: 16px;
+    }
+    
+    .tips-card {
+        order: 2;
+    }
+    
+    .form-card {
+        order: 1;
+    }
+}
+
+@media (max-width: 420px) {
+    form input,
+    form select {
+        padding: 11px;
+    }
+    
+    .layout {
+        gap: 16px;
+    }
+    
+    .card {
+        padding: 20px;
+    }
+}
